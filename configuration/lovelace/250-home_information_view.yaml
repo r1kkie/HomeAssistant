@@ -1,0 +1,140 @@
+title: Hem information
+path: home_information
+cards:
+  - type: custom:decluttering-card
+    template: header
+    variables:
+      - title: Hem information
+      - subtitle: Hem
+      - path: mobile
+
+  - type: custom:mod-card
+    style: |
+      ha-card {
+        padding: 6px 16px 0px 16px;
+      } 
+      layout-card {
+        border-radius: 4px;
+        background-color: var(--dwains-theme-primary);
+      }
+    card:
+      type: custom:layout-card
+      min_columns: 2
+      max_columns: 2
+      layout: horizontal
+      justify_content: start
+      cards:  
+        - type: custom:button-card
+          entity: binary_sensor.dish_washer_running
+          template: more_page_house_information_favorites
+          icon: mdi:dishwasher
+          name: Diskmaskin
+          tap_action:
+            action: more-info
+
+        - type: custom:button-card
+          entity: binary_sensor.ender_3_printing
+          template: more_page_house_information_favorites
+          icon: mdi:printer-3d
+          name: 3D printer
+          tap_action:
+            action: more-info
+
+        - type: custom:button-card
+          entity: sensor.orjan_vacuum_status
+          template: more_page_house_information_favorites
+          icon: mdi:robot-vacuum
+          state: 
+            - value: 'Paused'
+              styles: 
+                icon:
+                  - color: 'red'
+            - value: 'Charger disconnected'
+              styles: 
+                icon:
+                  - color: 'red'
+          name: Örjan
+          tap_action:
+            action: more-info
+
+        - type: custom:button-card
+          template: more_page_house_information_favorites
+          icon: mdi:flower
+          name: Blommor
+          tap_action:
+            action: navigate
+            navigation_path: flower_view
+          label: >
+              [[[
+                if (states['sensor.sedum_moisture'].state < '30')
+                  return "Behöver vatten"
+                  if (states['sensor.guldpalm_moisture'].state < '30')
+                    return "Behöver vatten"
+                    if (states['sensor.bergpalm_moisture'].state < '30')
+                      return "Behöver vatten"
+                      if (states['sensor.citronfikus_moisture'].state < '30')
+                        return "Behöver vatten"
+                        if (states['sensor.pillerfikus_moisture'].state < '30')
+                          return "Behöver vatten"
+                    
+                return 'Fuktiga' 
+              ]]]
+          styles:
+            icon: 
+              - color: >
+                  [[[
+                    if (states['sensor.sedum_moisture'].state < '30') return 'red';
+                    if (states['sensor.guldpalm_moisture'].state < '30') return 'red';
+                    if (states['sensor.bergpalm_moisture'].state < '30') return 'red';
+                    if (states['sensor.citronfikus_moisture'].state < '30') return 'red';
+                    if (states['sensor.pillerfikus_moisture'].state < '30') return 'red';
+                    else return 'var(--dwains-theme-accent)';
+                  ]]]
+
+        - type: custom:button-card
+          template: more_page_house_information_favorites
+          icon: fas:cubes
+          name: Enheter
+          tap_action:
+            action: navigate
+            navigation_path: system_monitor_page 
+          label: >
+              [[[
+                if (states['sensor.lights_status'].state == 'Problems')
+                  return "Enheter är offline"
+                  if (states['sensor.switches_status'].state == 'Problems')
+                    return "Enheter är offline"
+                    if (states['sensor.sensors_status'].state == 'Problems')
+                      return "Enheter är offline"                 
+                return 'Alla enheter online' 
+              ]]]
+          styles:
+            icon: 
+              - color: >
+                  [[[
+                    if (states['sensor.lights_status'].state == 'Problems') return 'red';
+                    if (states['sensor.switches_status'].state == 'Problems') return 'red';
+                    if (states['sensor.sensors_status'].state == 'Problems') return 'red';
+                    else return 'var(--dwains-theme-accent)';
+                  ]]]
+
+  - type: custom:mod-card
+    style: |
+      ha-card {
+        padding: 0px 16px 0px 16px;
+      }
+    card:
+      type: custom:atomic-calendar
+      style: |
+        ha-card {
+          border-radius: 4px;
+          box-shadow: none;
+          background-color: var(--dwains-theme-primary);
+        }
+      showProgressBar: false
+      eventBarColor: 'var(--dwains-theme-grey)'
+      dayWrapperLineColor: 'var(--dwains-theme-grey)'
+      timeColor: 'var(--dwains-theme-grey)'
+      entities: 
+        - calendar.rickard_sers_gmail_com
+      title: "Kalender"

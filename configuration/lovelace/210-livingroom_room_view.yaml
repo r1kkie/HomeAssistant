@@ -1,0 +1,117 @@
+title: Livingroom Room
+path: livingroom_room
+cards:
+  - type: custom:decluttering-card
+    template: header
+    variables:
+      - title: Vardagsrum
+      - subtitle: Rum
+      - path: mobile
+
+  - type: custom:mod-card
+    style: |
+      ha-card {
+        padding: 8px 16px 20px 16px;
+      }
+    card:
+      type: custom:layout-card
+      min_columns: 1
+      max_columns: 1
+      layout: horizontal
+      justify_content: start
+      
+      cards:
+        - type: custom:button-card
+          template: device_button
+          entity: group.livingroom_lights
+          name: Lampor
+          icon: fas:lightbulb
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/livingroom_lights
+          label: >
+              [[[
+                if (states['group.livingroom_lights'].state == '0')
+                  return "Alla lampor släkta"
+                return 'Lampor tända: ' + states['sensor.livingroom_kitchen_lights_turned_on'].state  
+              ]]]
+
+        - type: custom:button-card
+          template: device_button
+          entity: input_boolean.home_theater_chromecast
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/home_theater
+          double_tap_action:
+            action: toggle
+          name: Hemmabio
+          icon: fas:film
+          label: >
+            [[[
+              if (states['input_boolean.home_theater_chromecast'].state == 'on')
+                return "Påslagen"
+              return "Avstängd"
+            ]]]
+
+        - type: custom:button-card
+          name: Gardin
+          template: slider_button
+          icon: mdi:blinds
+          styles:
+            custom_fields:
+              closed:
+                - background-color: transparent;
+                - position: absolute
+                - left: 35%
+                - top: 65%
+                - width: 60px
+                - height: 40px
+                - text-align: center
+                - color: var(--dwains-theme-grey)
+                - font-size: 12px
+              open:
+                - background-color: transparent;
+                - position: absolute
+                - left: 80%
+                - top: 65%
+                - width: 60px
+                - height: 40px
+                - text-align: center
+                - color: var(--dwains-theme-grey)
+                - font-size: 12px                  
+          custom_fields:
+            slider:
+              card:
+                type: custom:slider-entity-row
+                full_row: true
+                hide_state: true
+                entity: input_number.curtain_slider
+            closed: >
+              [[[ 
+                return  'Fördragen' 
+              ]]]
+            open: >
+              [[[ 
+                return  'Uppdragen' 
+              ]]]
+
+        - type: custom:mini-graph-card
+          entities: 
+            - entity: sensor.temperature_sensor_livingroom
+          name: vardagsrum
+          style: |
+            ha-card {
+              padding: 6px 16px 0px 16px;
+              border-radius: 5px;
+              color: var(--dwains-theme-names);
+              background-color: var(--dwains-theme-primary);
+            }       
+          hours_to_show: 72
+          points_per_hour: 0.25
+          color_thresholds:
+            - value: 20
+              color: "#0040FF"
+            - value: 23
+              color: "#00ab0e"
+            - value: 26
+              color: "#FF0000"

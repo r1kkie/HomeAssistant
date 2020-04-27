@@ -1,0 +1,140 @@
+title: Lights
+icon: mdi:lightbulb-group
+path: all_lights
+cards:
+  - type: custom:decluttering-card
+    template: header_slim
+    variables: 
+      - title: Alla lampor
+
+  - type: vertical-stack
+    title: Vardagsrum
+    cards:
+
+      - type: custom:mod-card
+        style: |
+          ha-card {
+            padding: 8px 16px 20px 16px;
+          }
+        card:
+          type: custom:layout-card
+          min_columns: 2
+          max_columns: 2
+          layout: horizontal
+          justify_content: start
+          cards:
+            - type: custom:button-card
+              template: room_light
+              entity: light.livingroom_ceiling
+              name: Taket 
+          
+            - type: custom:button-card
+              template: room_light
+              entity: light.livingroom_shelf
+              name: Hyllan
+
+            - type: custom:button-card
+              template: room_light
+              entity: light.livingroom_window
+              name: Fönster
+
+            - type: custom:button-card
+              template: room_light
+              entity: light.monitor
+              name: Skärmen
+
+            - type: custom:button-card
+              template: room_light
+              entity: light.kitchen_spotlights
+              name: Spottarna
+
+            - type: custom:button-card
+              template: room_light
+              entity: light.led_strip
+              name: Bänken
+  - type: vertical-stack
+    title: Sovrum
+    cards:
+      - type: custom:mod-card
+        style: |
+          ha-card {
+            padding: 8px 16px 20px 16px;
+          }
+        card:
+          type: custom:layout-card
+          min_columns: 2
+          max_columns: 2
+          layout: horizontal
+          justify_content: start
+          cards:
+            - type: custom:button-card
+              template: room_light
+              entity: light.bedroom_ceiling
+              name: Taket 
+          
+            - type: custom:button-card
+              template: room_light
+              entity: light.bedroom_window
+              name: Fönster
+
+            - type: custom:button-card
+              template: room_light
+              entity: light.bed_table_light_right
+              name: Sängbord höger
+
+            - type: custom:button-card
+              template: room_light
+              entity: light.bed_table_lamp_left
+              name: Sängbord vänster
+
+  - type: vertical-stack
+    title: Hallen
+    cards:
+      - type: custom:mod-card
+        style: |
+          ha-card {
+            padding: 8px 16px 20px 16px;
+          }
+        card:
+          type: custom:layout-card
+          min_columns: 2
+          max_columns: 2
+          layout: horizontal
+          justify_content: start
+          cards:
+            - type: custom:button-card
+              template: room_light
+              entity: light.hallway_ceiling
+              name: Taket
+
+            - type: custom:button-card
+              template: room_light
+              entity: light.hallway_table
+              name: Bordslampa 
+
+  - type: vertical-stack
+    title: Toalett
+    cards:
+      - type: custom:mod-card
+        style: |
+          ha-card {
+            padding: 8px 16px 20px 16px;
+          }
+        card:
+          type: custom:layout-card
+          min_columns: 2
+          max_columns: 2
+          layout: horizontal
+          justify_content: start
+          cards:
+            - type: custom:button-card
+              template: room_light
+              entity: light.bathroom_ceiling_2
+              name: Taket 1
+
+            - type: custom:button-card
+              template: room_light
+              entity: light.bathroom_ceiling_3
+              name: Taket 2 
+
+

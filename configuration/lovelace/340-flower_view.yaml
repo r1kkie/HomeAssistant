@@ -1,0 +1,62 @@
+title: Blommor
+path: flower_view
+cards:
+  - type: custom:decluttering-card
+    template: header
+    variables:
+      - title: Blommor
+      - subtitle: Hus information
+      - path: home_information
+
+  - type: custom:mod-card
+    style: |
+      ha-card {
+        padding: 8px 16px 20px 16px;
+      }
+    card:
+      type: custom:layout-card
+      min_columns: 2
+      max_columns: 2
+      layout: horizontal
+      justify_content: start
+      
+      cards:
+        - type: custom:button-card
+          template: flower
+          entity: sensor.sedum_moisture
+          name: Sedum
+          icon: fas:seedling
+          tap_action:
+            action: more-info
+
+        - type: custom:button-card
+          template: flower
+          entity: sensor.guldpalm_moisture
+          name: Guldpalm
+          icon: fas:seedling
+          tap_action:
+            action: more-info
+
+        - type: custom:button-card
+          template: flower
+          entity: sensor.bergpalm_moisture
+          name: Bergpalm
+          icon: fas:seedling
+          tap_action:
+            action: more-info
+
+        - type: custom:button-card
+          template: flower
+          entity: sensor.citronfikus_moisture
+          name: Citronfikus
+          icon: fas:seedling
+          tap_action:
+            action: more-info
+
+        - type: custom:button-card
+          template: flower
+          entity: sensor.pillerfikus_moisture
+          name: Pillerfikus
+          icon: fas:seedling
+          tap_action:
+            action: more-info

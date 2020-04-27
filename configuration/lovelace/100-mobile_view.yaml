@@ -1,0 +1,216 @@
+title: Mobile
+icon: fas:mobile-alt
+path: mobile
+cards:     
+    #START HOMEPAGE HEADER
+  - type: custom:mod-card
+    style: |
+      ha-card {
+        padding: 8px 16px 0px 16px;
+        background-color: var(--dwains-theme-header-background);
+        --ha-card-background: transparent;
+        margin-top: -4px;
+        border-radius: 0;
+      } 
+    card:
+      type: custom:button-card
+      template: header_greeting
+      show_label: true
+      show_icon: true
+
+# SOME HEADER INFO
+  - type: custom:mod-card
+    style: |
+      ha-card {
+        padding: 0 0 5px 0;
+        background-color: var(--dwains-theme-header-background);
+        --ha-card-background: transparent;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+      } 
+    card:      
+      type: custom:layout-card
+      min_columns: 2
+      max_columns: 2
+      layout: horizontal
+      justify_content: start
+      cards:      
+        - type: custom:button-card
+          template: header_house_information
+          tap_action:
+            action: navigate
+            navigation_path: home_information
+        - type: custom:button-card
+          template: header_weather
+        - type: custom:button-card
+          template: header_person
+          entity: person.rickard
+          entity_picture: '/local/rickard.jpg?v=1'
+          name: Rickard
+#          tap_action: 
+#            action: navigate
+#            navigation_path:
+        - type: custom:button-card
+          template: header_person
+          entity: person.jennifer
+          entity_picture: '/local/jennifer.jpg?v=1'
+          name: Jennifer
+#          tap_action: 
+#            action: navigate
+#            navigation_path:
+
+  # FIRST ROW
+  - type: custom:layout-card
+    min_columns: 2
+    max_columns: 2
+    layout: horizontal
+    justify_content: start
+    cards:
+      # LIVINGROOM
+      - type: custom:mod-card
+        style: |
+          ha-card {
+            padding: 5px 5px 5px 5px;
+          }
+        card:
+          type: custom:button-card
+          template: room_button
+          name: Vardagsrum
+          icon: fas:couch
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/livingroom_room
+          label: >    
+              [[[
+                return states['sensor.temperature_sensor_livingroom'].state;
+              ]]]
+          show_label: true
+          custom_fields:
+            lights: >
+                [[[
+                  var icon = states['group.livingroom_lights'].state === 'on' ? 'fas:lightbulb' : 'far:lightbulb';
+                  var icon_color = states['group.livingroom_lights'].state === 'on' ? 'var(--dwains-theme-accent)' : '';
+                  return '<ha-icon icon="' + icon +'" style="width: 20px; color:' + icon_color +';"></ha-icon>'
+                ]]]
+#            motion_sensor: >
+            additional_info: >
+                [[[
+                  var icon = states['binary_sensor.door_sensor_balcony'].state === 'on' ? 'fas:door-open' : '';
+                  var icon_color = states['binary_sensor.door_sensor_balcony'].state === 'on' ? 'var(--dwains-theme-accent)' : '';
+                  return '<ha-icon icon="' + icon +'" style="width: 20px; color:' + icon_color +';"></ha-icon>'
+                ]]]
+
+      # BEDROOM
+      - type: custom:mod-card
+        style: |
+          ha-card {
+            padding: 5px 5px 5px 5px;
+          }
+        card:
+          type: custom:button-card
+          template: room_button
+          name: Sovrum
+          icon: fas:bed
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/bedroom_room
+          label: >    
+            [[[
+              return states['sensor.temperature_sensor_bedroom'].state;
+            ]]]
+          show_label: true
+          custom_fields:
+            lights: >
+                [[[
+                  var icon = states['group.bedroom_lights'].state === 'on' ? 'fas:lightbulb' : 'far:lightbulb';
+                  var icon_color = states['group.bedroom_lights'].state === 'on' ? 'var(--dwains-theme-accent)' : '';
+                  return '<ha-icon icon="' + icon +'" style="width: 20px; color:' + icon_color +';"></ha-icon>'
+                ]]]
+            motion_sensor: >
+                [[[
+                  var icon = states['binary_sensor.motion_sensor_bedroom'].state === 'on' ? 'fas:walking' : '';
+                  var icon_color = states['binary_sensor.motion_sensor_bedroom'].state === 'on' ? 'var(--dwains-theme-accent)' : '';
+                  return '<ha-icon icon="' + icon +'" style="width: 20px; color:' + icon_color +';"></ha-icon>'
+                ]]]
+            additional_info: >
+                [[[
+                  var icon = states['binary_sensor.window_sensor_bedroom'].state === 'on' ? 'mdi:window-open' : '';
+                  var icon_color = states['binary_sensor.window_sensor_bedroom'].state === 'on' ? 'var(--dwains-theme-accent)' : '';
+                  return '<ha-icon icon="' + icon +'" style="width: 20px; color:' + icon_color +';"></ha-icon>'
+                ]]]
+
+
+  # SECOND ROW
+  - type: custom:layout-card
+    min_columns: 2
+    max_columns: 2
+    layout: horizontal
+    justify_content: start
+    cards: 
+      # HALLWAY  
+      - type: custom:mod-card
+        style: |
+          ha-card {
+            padding: 5px 5px 5px 5px;
+          }
+        card:
+          type: custom:button-card
+          template: room_button
+          name: Hall
+          icon: fas:key
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/hallway_room
+          label: "."
+          show_label: true
+          custom_fields:
+            lights: >
+                [[[
+                  var icon = states['group.hallway_lights'].state === 'on' ? 'fas:lightbulb' : 'far:lightbulb';
+                  var icon_color = states['group.hallway_lights'].state === 'on' ? 'var(--dwains-theme-accent)' : '';
+                  return '<ha-icon icon="' + icon +'" style="width: 20px; color:' + icon_color +';"></ha-icon>'
+                ]]]
+            motion_sensor: >
+                [[[
+                  var icon = states['binary_sensor.motion_sensor_hallway'].state === 'on' ? 'fas:walking' : '';
+                  var icon_color = states['binary_sensor.motion_sensor_hallway'].state === 'on' ? 'var(--dwains-theme-accent)' : '';
+                  return '<ha-icon icon="' + icon +'" style="width: 20px; color:' + icon_color +';"></ha-icon>'
+                ]]]
+      # TOILET
+      - type: custom:mod-card
+        style: |
+          ha-card {
+            padding: 5px 5px 5px 5px;
+          }
+        card:
+          type: custom:button-card
+          template: room_button
+          name: Toalett
+          icon: fas:toilet-paper
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/bathroom_room
+          label: "."
+          show_label: true
+          custom_fields:
+            lights: >
+                [[[
+                  var icon = states['group.bathroom_lights'].state === 'on' ? 'fas:lightbulb' : 'far:lightbulb';
+                  var icon_color = states['group.bathroom_lights'].state === 'on' ? 'var(--dwains-theme-accent)' : '';
+                  return '<ha-icon icon="' + icon +'" style="width: 20px; color:' + icon_color +';"></ha-icon>'
+                ]]]
+            motion_sensor: >
+                [[[
+                  var icon = states['binary_sensor.motion_sensor_bathroom'].state === 'on' ? 'fas:walking' : '';
+                  var icon_color = states['binary_sensor.motion_sensor_bathroom'].state === 'on' ? 'var(--dwains-theme-accent)' : '';
+                  return '<ha-icon icon="' + icon +'" style="width: 20px; color:' + icon_color +';"></ha-icon>'
+                ]]]
+            additional_info: >
+                [[[
+                  var icon = states['input_boolean.shower_state'].state === 'on' ? 'fas:shower' : '';
+                  var icon_color = states['input_boolean.shower_state'].state === 'on' ? 'var(--dwains-theme-accent)' : '';
+                  return '<ha-icon icon="' + icon +'" style="width: 20px; color:' + icon_color +';"></ha-icon>'
+                ]]]
+

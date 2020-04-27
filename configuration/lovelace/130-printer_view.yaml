@@ -1,0 +1,115 @@
+title: 3d-printer
+path: 3d-printer
+icon: mdi:rotate-3d
+cards:
+  - type: custom:decluttering-card
+    template: header_slim
+    variables: 
+      - title: 3D-printer
+
+  - type: custom:mod-card
+    style: |
+      ha-card {
+        padding: 8px 16px 0px 16px;
+      }
+    card:
+      type: custom:layout-card
+      min_columns: 1
+      max_columns: 1
+      layout: horizontal
+      justify_content: start
+      cards:
+        - type: custom:button-card
+          template: device_button_2
+          entity: sensor.ender_3_current_state
+          name: 3d printer
+          tap_action:
+            action: more-info
+          double_tap_action:
+            action: call-service
+            service: switch.toggle
+            service_data:
+              entity_id: switch.shelly_shplg_s_267fe1
+#          hold_action:
+#            action: toggle
+          icon: mdi:printer-3d
+          show_state: true
+          label: >
+              [[[
+                return 'Power '+states['switch.shelly_shplg_s_267fe1'].state  
+              ]]]
+        - type: custom:button-card
+          template: device_button_2
+          name: Temperatur
+          show_state: false
+          icon: mdi:thermometer
+          styles:
+            custom_fields: 
+              nozzel_element:
+                - position: absolute
+                - right: 4%
+                - top: 30%
+                - font-size: 15px
+                - align-self: end
+              bed_element:
+                - position: absolute
+                - right: 4%
+                - top: 50%
+                - font-size: 15px
+                - align-self: end
+
+          custom_fields:
+            nozzel_element: >
+              [[[
+                return 'Nozzle '+states['sensor.ender_3_actual_tool0_temp'].state + ' C'
+              ]]]
+            bed_element: >
+              [[[
+                return 'Bed '+states['sensor.ender_3_actual_bed_temp'].state + ' C' 
+              ]]]
+
+        - type: custom:button-card
+          template: device_button_2
+          entity: sensor.printer_energy_monthly
+          name: Förbrukning
+          tap_action:
+            action: more-info
+          icon: mdi:flash
+          show_state: true
+          label: >
+              [[[
+                return states['sensor.shelly_shplg_s_267fe1_current_consumption'].state +' W'
+              ]]]
+
+        - type: custom:button-card
+          template: device_button_2
+          entity: sensor.ender_3_time_remaining_template
+          name: Tid kvar
+          tap_action:
+            action: more-info
+          icon: mdi:timer
+          show_state: true
+
+  - type: custom:mod-card
+    style: |
+      ha-card {
+        padding: 0px 16px 0px 16px;
+      }
+    card:
+      type: custom:layout-card
+      min_columns: 1
+      max_columns: 1
+      layout: horizontal
+      justify_content: start
+      cards:
+        - type: custom:decluttering-card
+          template: system_bar_card
+          variables:
+            - entity: sensor.ender_3_job_percentage
+          
+        - type: picture-glance
+          title: Ender 3
+          entities: []
+          camera_image: camera.octoprint
+
+
