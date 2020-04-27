@@ -1,0 +1,13 @@
+#System bar-card for cpu, ram usage
+
+system_bar_card:
+  card:
+    type: custom:bar-card
+    entity: '[[entity]]'
+    style: |
+      ha-card {
+        color: var(--dwains-theme-names);
+        padding: 6px 16px 0px 16px;
+        border-radius: 5px;
+        background-color: var(--dwains-theme-primary);
+      }    
