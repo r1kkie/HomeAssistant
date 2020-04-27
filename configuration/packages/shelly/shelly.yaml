@@ -1,0 +1,9 @@
+homeassistant:
+
+shelly:
+  devices:  
+    - id: "267FE1"
+      name: Printer power plug
+    
+    - id: "267F92"
+      name: Dish washer

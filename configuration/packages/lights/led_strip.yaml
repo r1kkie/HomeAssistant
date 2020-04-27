@@ -1,0 +1,11 @@
+homeassistant:
+
+  customize:
+    light.led_strip:
+      friendly_name: Led list
+      icon: mdi:led-strip
+
+yeelight:
+  devices:
+    192.168.1.191:
+      name: LED Strip

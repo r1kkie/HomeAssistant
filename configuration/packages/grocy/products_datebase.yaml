@@ -1,0 +1,33 @@
+homeassistant:
+
+  customize:
+    makesthiserrorgoaway: 
+      friendly_name: error
+
+sensor:
+  - platform: template
+    sensors:
+      grocy_product_item:
+        value_template: "{{  state_attr('sensor.grocy_products', 'items')[0] }}"
+
+##### Item database
+
+  - platform: rest
+    resource: http://192.168.1.70:9192/api/stock/products/4
+    headers:
+      GROCY-API-KEY: !secret grocy_api_key
+    name: Disktabletter
+    value_template: '{{ value_json.stock_amount }}'
+    scan_interval: 3600
+    json_attributes:
+      - last_purchased
+
+  - platform: rest
+    resource: http://192.168.1.70:9192/api/stock/products/7
+    headers:
+      GROCY-API-KEY: !secret grocy_api_key
+    name: Toaletpapper
+    value_template: '{{ value_json.stock_amount }}'
+    scan_interval: 3600
+    json_attributes:
+      - last_purchased

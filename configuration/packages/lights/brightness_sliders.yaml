@@ -1,0 +1,50 @@
+homeassistant:
+
+input_number:
+  bedroom_ceiling:
+    name: Bedroom ceiling
+    min: 0
+    max: 100
+    step: 5
+
+  bedroom_window:
+    name: Bedroom window
+    min: 0
+    max: 100
+    step: 5
+
+  bedroom_table_lamps:
+    name: Bedroom table lamp
+    min: 0
+    max: 100
+    step: 5
+
+  hallway_ceiling:
+    name: Hallway ceiling
+    min: 0
+    max: 100
+    step: 5
+
+  hallway_ceiling_night:
+    name: Hallway ceiling
+    min: 0
+    max: 100
+    step: 5
+
+  hallway_table_lamp:
+    name: Hallway table lamp
+    min: 0
+    max: 100
+    step: 5
+
+  bathroom_ceiling_night:
+    name: Bathroom ceiling night
+    min: 0
+    max: 100
+    step: 5
+
+input_datetime:
+  light_time:
+    name: time the light should go on 
+    has_date: false
+    has_time: true

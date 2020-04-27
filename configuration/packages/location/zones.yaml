@@ -1,0 +1,44 @@
+homeassistant:
+
+zone:
+  - name: Stallet
+    latitude: !secret latitude_stable
+    longitude: !secret longitude_stable
+    radius: 1000
+    icon: mdi:chess-knight
+
+  - name: Stallet 2
+    latitude: !secret latitude_stable_2
+    longitude: !secret longitude_stable_2
+    radius: 1000
+    icon: mdi:chess-knight
+
+  - name: Jennifer jobbet
+    latitude: !secret latitude_jennifer_work
+    longitude: !secret longitude_jennifer_work
+    radius: 500
+    icon: mdi:briefcase
+
+  - name: Golfbanan
+    latitude: !secret latitude_golfbanan
+    longitude: !secret longitude_golfbanan
+    radius: 1500
+    icon: mdi:golf
+
+  - name: Rickard kontoret
+    latitude: !secret latitude_rickard_kontor
+    longitude: !secret longitude_rickard_kontor
+    radius: 200
+    icon: mdi:briefcase
+
+  - name: Jobbet kga
+    latitude: !secret latitude_jobbet_kga
+    longitude: !secret longitude_jobbet_kga
+    radius: 1000
+    icon: mdi:briefcas
+
+  - name: Gymmet
+    latitude: !secret latitude_gymmet
+    longitude: !secret longitude_gymmet
+    radius: 250
+    icon: mdi:briefcas

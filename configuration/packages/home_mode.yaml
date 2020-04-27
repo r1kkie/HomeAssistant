@@ -1,0 +1,18 @@
+homeassistant:
+  customize:
+    input_boolean.sleep_mode:
+      friendly_name: God natt
+      icon: mdi:sleep
+
+    input_boolean.cozy_mode:
+      icon: mdi:heart-multiple
+
+input_boolean:
+  sleep_mode:
+    name: God natt
+    initial: false
+
+  cozy_mode:
+    name: Mys
+    initial: false
+

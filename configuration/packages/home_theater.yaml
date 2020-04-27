@@ -1,0 +1,9 @@
+homeassistant:
+
+input_boolean:
+  home_theater_chromecast:
+    name: Hembio
+    initial: false
+    icon: mdi:theater
+
+

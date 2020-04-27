@@ -1,0 +1,17 @@
+homeassistant:
+  customize:
+    blabla:
+      name: 
+
+input_text:
+  warning_sensor:
+    name: Information
+    initial: 'off'
+
+sensor:
+  - platform: template
+    sensors:
+      warning_sensor:
+        value_template: '{{ states.input_text.warning_sensor.state }}'
+        friendly_name: 'Information'
+  

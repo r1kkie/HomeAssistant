@@ -1,0 +1,122 @@
+homeassistant:
+  customize:  
+    sensor.lights_status:
+      icon: mdi:lightbulb-on
+      friendly_name: Lampor
+    sensor.switches_status:
+      icon: mdi:power-plug
+      friendly_name: Brytare
+    sensor.sensosrs_status:
+      icon: mdi:motion-sensor
+
+sensor:
+  - platform: template
+    sensors:
+    
+      lights_check:
+        value_template: >-
+          {{ is_state('light.bathroom_ceiling_2', 'unavailable')
+             or is_state('light.bathroom_ceiling_3', 'unavailable')
+             or is_state('light.bedroom_ceiling', 'unavailable')
+             or is_state('light.hallway_table', 'unavailable')
+             or is_state('light.hallway_ceiling', 'unavailable')
+             or is_state('light.kitchen_spotlight_1', 'unavailable')
+             or is_state('light.kitchen_spotlight_2', 'unavailable')
+             or is_state('light.kitchen_spotlight_3', 'unavailable')
+             or is_state('light.led_strip', 'unavailable')
+             or is_state('light.bed_table_right', 'unavailable')
+             or is_state('light.bed_table_left', 'unavailable')
+             or is_state('light.bedroom_window', 'unavailable')
+             or is_state('light.livingroom_ceiling', 'unavailable')}}
+
+
+      lights_status:
+        value_template: '{% if states.sensor.lights_check %}
+          {% if states.sensor.lights_check.state == "True" %}
+            Problems
+          {% else %}
+            Online
+          {% endif %}
+          {% else %}
+          n/a
+          {% endif %}'
+        friendly_name: 'lights'
+    
+      switches_check:
+        value_template: >-
+          {{
+             is_state('switch.livingroom_monitor', 'unavailable')
+             or is_state('switch.livingroom_window', 'unavailable')
+             or is_state('switch.phone_charger_jennifer', 'unavailable')
+             or is_state('switch.phone_charger_rickard', 'unavailable')
+             or is_state('switch.projector', 'unavailable')
+             or is_state('switch.reciver', 'unavailable')
+             or is_state('switch.shelly_shplg_s_267fe1', 'unavailable')
+          }}
+#             or is_state('switch.3d_printer', 'unavailable')
+#             or is_state('switch.livingroom_shelf', 'unavailable')
+             
+
+
+      switches_status:
+        value_template: '{% if states.sensor.switches_check %}
+          {% if states.sensor.switches_check.state == "True" %}
+            Problems
+          {% else %}
+            Online
+          {% endif %}
+          {% else %}
+          n/a
+          {% endif %}'
+        friendly_name: 'switches'
+        
+      sensors_check:
+        value_template: >-
+          {{ is_state('sensor.temperature_sensor_bedroom', 'unavailable')
+             or is_state('sensor.temperature_sensor_livingroom', 'unavailable')
+             or is_state('sensor.temperature_sensor_outside', 'unavailable')
+             or is_state('binary_sensor.window_sensor_bedroom', 'unavailable')
+             or is_state('binary_sensor.door_sensor_balcony', 'unavailable')
+             or is_state('binary_sensor.door_sensor_freezer', 'unavailable')
+             or is_state('binary_sensor.door_sensor_fridge', 'unavailable')
+             or is_state('binary_sensor.motion_sensor_hallway', 'unavailable')
+             or is_state('binary_sensor.motion_sensor_bathroom', 'unavailable')
+             or is_state('binary_sensor.motion_sensor_bedroom', 'unavailable')}}
+
+      sensors_status:
+        value_template: '{% if states.sensor.sensors_check %}
+          {% if states.sensor.sensors_check.state == "True" %}
+            Problems
+          {% else %}
+            Online
+          {% endif %}
+          {% else %}
+          n/a
+          {% endif %}'
+        friendly_name: 'Sensorer'             
+
+
+      light_information_sensor:
+        value_template: '{{ states.input_text.information_light.state }}'
+        friendly_name: 'Information lights'
+
+      sensor_information_sensor:
+        value_template: '{{ states.input_text.information_sensor_2.state }}'
+        friendly_name: 'Information sensors'
+
+      switch_information_sensor:
+        value_template: '{{ states.input_text.information_switch.state }}'
+        friendly_name: 'Information switches'
+
+input_text:
+  information_light:
+    name: Information light
+    initial: 'empty'
+
+  information_sensor_2:
+    name: Information sensor
+    initial: 'empty'
+
+  information_switch:
+    name: Information switch
+    initial: 'empty'

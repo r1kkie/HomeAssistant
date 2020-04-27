@@ -1,0 +1,84 @@
+homeassistant:
+  customize:
+    sensor.disk_use_percent_home:
+      friendly_name: Disk
+    sensor.memory_use_percent:
+      friendly_name: Minne
+    sensor.processor_use:
+      friendly_name: Processor
+sensor:
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+#      - type: memory_free
+      - type: memory_use_percent
+      - type: processor_use
+#      - type: last_boot
+      
+
+  - platform: version
+#    name: Nuvarande
+
+  - platform: command_line
+    name: Installerad version
+    command: "cat /config/.HA_VERSION"
+    
+  - platform: command_line
+    name: Uptime OS
+    command: uptime | sed 's/.*up \([^,]*\), .*/\1/'
+    
+  - platform: uptime
+    name: HA uptime
+    unit_of_measurement: minutes
+    
+
+  - platform: template
+    sensors:
+      ha_uptime_seconds:
+        friendly_name: HA utime seconds
+        value_template: '{{ states.sensor.ha_uptime.state | float * 60 }}'
+        
+        
+  - platform: template
+    sensors:        
+      ha_uptime_template:
+        friendly_name: HA uptime
+        value_template: >-
+          {% set rtime = states.sensor.ha_uptime_seconds.state | int %}
+          {% set seconds = rtime % 60 %}
+          {% set minutes = ((rtime % 3600) / 60) | int %}
+          {% set hours = ((rtime % 86400) / 3600) | int %}
+          {% set days = (rtime / 86400) | int %}
+          {%- if days > 0 -%}
+            {%- if days == 1 -%}
+              1 day
+            {%- else -%}
+              {{ days }} days
+            {%- endif -%}
+          {{ ', ' }}
+          {%- endif -%}
+          {%- if hours > 0 -%}
+            {%- if hours == 1 -%}
+              1 hour
+            {%- else -%}
+              {{ hours }} hours
+            {%- endif -%}
+            {{ ', ' }}
+          {%- endif -%}
+          {%- if minutes > 0 -%}
+            {%- if minutes == 1 -%}
+              1 minute
+            {%- else -%}
+              {{ minutes }} minutes
+            {%- endif -%}
+          {%- endif -%}
+
+
+  - platform: rest
+    resource: https://pypi.python.org/pypi/homeassistant/json
+    name: Senaste versionen
+    value_template: '{{ value_json.info.version }}'
+    scan_interval: 3600
+
+

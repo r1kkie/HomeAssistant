@@ -1,0 +1,16 @@
+homeassistant:
+
+light:
+  - platform: group
+    name: Kitchen Spotlights
+    entities:
+      - light.kitchen_spotlight_1
+      - light.kitchen_spotlight_2
+      - light.kitchen_spotlight_3
+
+input_number:
+  test_slider:
+    name: test slider
+    min: 1
+    max: 100
+    step: 1

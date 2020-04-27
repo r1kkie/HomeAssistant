@@ -1,0 +1,13 @@
+homeassistant:
+
+sensor:
+  - platform: integration
+    source: sensor.shelly_shplg_s_267fe1_current_consumption
+    name: printer_energy_kwh
+    unit_prefix: k
+    round: 2
+
+utility_meter:
+  printer_energy_monthly:
+    source: sensor.printer_energy_kwh
+    cycle: monthly

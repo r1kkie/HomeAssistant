@@ -1,0 +1,6 @@
+homeassistant:
+
+input_boolean:
+  shower_state:
+    name: Shower state
+    

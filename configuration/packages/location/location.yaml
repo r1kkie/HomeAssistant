@@ -1,0 +1,139 @@
+homeassistant:
+  customize:
+    input_select.jennifer_location:
+      entity_picture: /local/jennifer.jpg?v1.0
+    
+    input_select.rickard_location:
+      entity_picture: /local/rickard.jpg?v1.0
+
+device_tracker:
+  - platform: mqtt
+    devices:
+      rickard_bt: "homeassistant_slave/sensor/device_tracker_honor_8/state"
+      jennifer_bt: "homeassistant_slave/sensor/device_tracker_jennifer_iphone_bt/state"
+  
+
+
+input_boolean:
+  home_occupied:
+    name: Någon hemma
+
+life360:
+  warning_threshold: 5
+  error_threshold: 6
+
+person:
+  - name: Rickard
+    id: rd87
+    device_trackers:
+      - device_tracker.life360_rickard_s
+      - device_tracker.rickard_bt
+
+  - name: Jennifer
+    id: jr91
+    device_trackers:
+      - device_tracker.jennifer_karlssons_iphone
+      - device_tracker.jennifer_bt
+
+input_select:
+  jennifer_location:
+    name: Jennifer plats
+    options:
+      - Hemma
+      - Jobbet
+      - Stallet
+      - Borta
+      - Golfbanan
+
+  rickard_location:
+    name: Rickard plats
+    options:
+      - Hemma
+      - Jobbet
+      - Jobbet kga
+      - Stallet
+      - Stallet tjusebo
+      - Golfbanan
+      - Gymmet
+      - Borta
+
+sensor:
+  - platform: mqtt
+    name: Honor 8
+    state_topic: "homeassistant_slave/sensor/device_tracker_honor_8/state"
+  
+  - platform: mqtt
+    name: Jennifer iphone bt
+    state_topic: "homeassistant_slave/sensor/device_tracker_jennifer_iphone_bt/state"
+
+binary_sensor:
+  - platform: template
+    sensors:
+      home_occupancy:
+        value_template: >-
+          {{ 
+            is_state('person.rickard', 'home')
+            or is_state('person.jennifer', 'home') 
+          }}
+        delay_off:
+          minutes: 5
+
+
+#binary_sensor:
+#  - platform: bayesian
+#    name: 'rickard_home'
+#    prior: 0.1
+#    observations:
+#      - entity_id: 'sensor.honor_8'
+#        prob_given_true: 0.9
+#        prob_given_false: 0.1
+#        platform: 'state'
+#        to_state: 'home'
+#      - entity_id: 'device_tracker.life360_rickard_s'
+#        prob_given_true: 0.9
+#        prob_given_false: 0.1
+#        platform: 'state'
+#        to_state: 'home'
+
+#  - platform: bayesian
+#    name: 'jennifer_home'
+#    prior: 0.1
+#    observations:
+#      - entity_id: 'sensor.jennifer_iphone_bt'
+#        prob_given_true: 0.9
+#        prob_given_false: 0.1
+#        platform: 'state'
+#        to_state: 'home'
+#      - entity_id: 'device_tracker.jennifer_karlssons_iphone'
+#        prob_given_true: 0.9
+#        prob_given_false: 0.1
+#        platform: 'state'
+#        to_state: 'home'
+
+
+script:
+  turn_off_all: #Not the printer plug
+    sequence:
+      - service: homeassistant.turn_off
+        data:
+          entity_id:
+            - switch.livingroom_monitor
+            - switch.livingroom_shelf
+            - switch.livingroom_window
+            - switch.phone_charger_jennifer
+            - switch.phone_charger_rickard
+            - switch.projector
+            - switch.reciver
+            - light.bathroom_ceiling_2
+            - light.bathroom_ceiling_3
+            - light.bedroom_ceiling
+            - light.hallway_table
+            - light.hallway_ceiling
+            - light.kitchen_spotlights
+            - light.kitchen_spotlight_1
+            - light.kitchen_spotlight_2
+            - light.kitchen_spotlight_3
+            - light.led_strip
+            - light.bed_table_light_right
+            - light.bed_table_lamp_left
+            - light.bedroom_window

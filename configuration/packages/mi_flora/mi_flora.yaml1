@@ -1,0 +1,90 @@
+homeassistant:
+  customize:
+    sensor.sedum_moisture:
+      friendly_name: Sedum
+
+    sensor.citronfikus_moisture:
+      friendly_name: Citronfikus
+
+    sensor.garderobsblomma_moisture:
+      friendly_name: Garderobsblomma
+
+    sensor.blandning_moisture:
+      friendly_name: Blandning
+
+    sensor.bergpalm_moisture:
+      friendly_name: Bergpalm
+
+    sensor.pillerfikus_moisture:
+      friendly_name: Pillerfikus
+
+input_text: #Used for template sensor thats shows the value in frontend. Text is controlled through node-red
+  information_flowers:
+    name: Information flowers
+    initial: 'empty'
+
+sensor:
+  - platform: miflora
+    mac: 'C4:7C:8D:63:75:25'
+    name: Sedum
+    force_update: true
+    monitored_conditions:
+     - moisture
+     - battery
+
+  - platform: miflora
+    mac: 'C4:7C:8D:65:BB:53'
+    name: Citronfikus
+    force_update: true
+    monitored_conditions:
+     - moisture
+     - battery
+
+  - platform: miflora
+    mac: 'C4:7C:8D:63:35:E6'
+    name: Garderobsblomma
+    force_update: true
+    monitored_conditions:
+     - moisture
+     - battery
+
+  - platform: miflora
+    mac: 'C4:7C:8D:62:68:80'
+    name: Blandning
+    force_update: true
+    monitored_conditions:
+     - moisture
+     - battery
+
+  - platform: miflora
+    mac: 'C4:7C:8D:65:BB:73'
+    name: Bergpalm
+    force_update: true
+    monitored_conditions:
+     - moisture
+     - battery
+
+  - platform: miflora
+    mac: 'C4:7C:8D:65:BB:2C'
+    name: Pillerfikus
+    force_update: true
+    monitored_conditions:
+     - moisture
+     - battery
+
+#  - platform: miflora
+#    mac: 'C4:7C:8D:65:BB:06'
+#    name: Gallergräs
+#    monitored_conditions:
+#     - moisture
+#     - battery
+
+
+# Template sensor 
+
+  - platform: template
+    sensors:
+      flower_information_sensor:
+        value_template: '{{ states.input_text.information_flowers.state }}'
+        friendly_name: 'Information'
+
