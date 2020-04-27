@@ -1,0 +1,14 @@
+homeassistant:
+
+alert:
+  refrigerator_door:
+    name: Fridge door is open
+    entity_id: binary_sensor.door_sensor_fridge
+    state: 'on'
+    repeat:
+      - 2
+      - 5
+      - 10
+    skip_first: true
+    notifiers:
+      - Home_Assistant

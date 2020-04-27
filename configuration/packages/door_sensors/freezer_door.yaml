@@ -1,0 +1,14 @@
+homeassistant:
+
+alert:
+  freezer_door:
+    name: Freezer door is open
+    entity_id: binary_sensor.door_sensor_freezer
+    state: 'on'
+    repeat:
+      - 2
+      - 5
+      - 10
+    skip_first: true
+    notifiers:
+      - Home_Assistant
