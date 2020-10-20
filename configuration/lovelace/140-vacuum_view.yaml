@@ -24,7 +24,11 @@ cards:
           entity: sensor.orjan_vacuum_status
           icon: mdi:robot-vacuum
           show_state: true
-          aspect_ratio: 4.5/1
+          state:
+            - value: 'Cleaning'
+              styles:
+                icon: 
+                  - animation: rotating 2s linear infinite
           name: Örjan
           label: >
             [[[
@@ -33,69 +37,18 @@ cards:
                 style="width: 20px; height: 20px; ">
                 </ha-icon><span>${states['sensor.orjan_vacuum_battery_level'].state}%</span>`              
             ]]]
-          styles:
-            custom_fields:
-              main_brush: 
-                - position: absolute
-                - left: 15%
-                - top: 70%
-                - height: 20px
-                - width: 20px
-              side_brush: 
-                - position: absolute
-                - left: 35%
-                - top: 70%
-                - height: 20px
-                - width: 20px
-              filter: 
-                - position: absolute
-                - left: 55%
-                - top: 70%
-                - height: 20px
-                - width: 20px
-              sensor: 
-                - position: absolute
-                - left: 75%
-                - top: 70%
-                - height: 20px
-                - width: 20px
-          custom_fields:
-            main_brush: >
-              [[[
-                return `<ha-icon
-                  icon="fas:broom"
-                  style="width: 20px; height: 20px; ">
-                  </ha-icon><span>${states['sensor.orjan_vacuum_main_brush_left'].state}</span>` 
-              ]]]
-            side_brush: >
-              [[[
-                return `<ha-icon
-                  icon="fas:broom"
-                  style="width: 20px; height: 20px; ">
-                  </ha-icon><span>${states['sensor.orjan_vacuum_side_brush_left'].state}</span>` 
-              ]]]
-            filter: >
-              [[[
-                return `<ha-icon
-                  icon="mdi:air-filter"
-                  style="width: 20px; height: 20px; ">
-                  </ha-icon><span>${states['sensor.orjan_vacuum_filter_left'].state}</span>` 
-              ]]]
-            sensor: >
-              [[[
-                return `<ha-icon
-                  icon="mdi:leak"
-                  style="width: 20px; height: 20px; ">
-                  </ha-icon><span>${states['sensor.orjan_vacuum_sensor_dirty_left'].state}</span>` 
-              ]]]
+            
         - type: custom:button-card
           template: device_button_2
-          entity: cover.window_control
-          icon: fas:warehouse
+          entity: cover.garage_control
+          icon: mdi:garage-variant
           show_state: true
           name: Garage
           tap_action:
             action: toggle
+          state:
+            - value: 'open'
+              icon: mdi:garage-open-variant
   - type: custom:mod-card
     style: |
       ha-card {
@@ -103,20 +56,40 @@ cards:
       }
     card:
       type: custom:layout-card
-      min_columns: 5
-      max_columns: 5
+      min_columns: 4
+      max_columns: 4
       layout: horizontal
       justify_content: start
       cards:
         - type: custom:button-card
           template: vacuum_control_button
-          icon: far:play-circle
+          icon: fas:home
+          entity: input_boolean.vacuum_start_cleaning
           name: Städa
           tap_action:
-            action: call-service
-            service: vacuum.start
-            service_data:
-              entity_id: vacuum.xiaomi_vacuum_cleaner
+            action: toggle
+        - type: custom:button-card
+          template: vacuum_control_button
+          icon: fas:bed
+          entity: input_boolean.vacuum_clean_bedroom
+          name: Städa
+          tap_action:
+            action: toggle
+        - type: custom:button-card
+          template: vacuum_control_button
+          icon: fas:couch
+          entity: input_boolean.vacuum_clean_livingroom
+          name: Städa
+          tap_action:
+            action: toggle
+        - type: custom:button-card
+          template: vacuum_control_button
+          icon: fas:key
+          entity: input_boolean.vacuum_clean_hallway
+          name: Städa
+          tap_action:
+            action: toggle
+
         - type: custom:button-card
           template: vacuum_control_button
           icon: far:stop-circle

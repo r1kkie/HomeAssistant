@@ -1,6 +1,6 @@
 vacuum_control_button:
 #  size: 55px
-  aspect_ratio: 1/1.2
+  aspect_ratio: 1/1
   show_label: true
   styles:
     grid:
@@ -20,8 +20,8 @@ vacuum_control_button:
     icon:
       - color: var(--dwains-theme-accent)
     img_cell:
-      - width: 45px
-      - height: 45px
+      - width: 55px
+      - height: 55px
       - background: var(--dwains-theme-background)
       - color: white
       - border-radius: 100%

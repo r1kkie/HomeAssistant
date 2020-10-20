@@ -1,29 +1,32 @@
-flower:
+entity_status:
   show_name: true
   show_icon: true
   show_state: false
   show_label: true
-  icon: fas:seedling
-  color: 'icon'
   tap_action:
+    action: toggle
+  double_tap_action:
     action: more-info
-  state: 
-    - value: 20
-      operator: '<'
-      color: red
-      icon: mdi:alert
-    - value: 20
-      operator: '>='
-      color: var(--dwains-theme-accent)
-  
+  hold_action:
+    action: more-info
+#  color: 'auto'
+  color_type: icon
   label: >
     [[[ 
-      return entity.state + '%';
-    ]]] 
+        if(entity.state == 'unavailable')
+          return "Problem"
+        return "Online"
+    ]]]
+  state:
+    - value: 'unavailable'
+      color: red
+      icon: mdi:alert
+
+
   styles:
     grid:
-      - grid-template-areas: '"i n l"'
-      - grid-template-columns: 30% 50% 20%
+      - grid-template-areas: '"i n""i l"'
+      - grid-template-columns: 30% 70%
       - grid-template-rows: min-content
     card:
       - background-color: var(--dwains-theme-primary)
@@ -33,7 +36,6 @@ flower:
       - padding-bottom: 14px
     icon:
       - width: 55%
-#      - color: var(--dwains-theme-accent)
     img_cell:
       - width: 45px
       - height: 45px
@@ -45,6 +47,6 @@ flower:
       - align-self: center
     label:
       - justify-self: start
-      - align-self: right
-      - font-size: 16px
-      - color: var(--dwains-theme-names)
+      - align-self: left
+      - font-size: 13px
+      - color: var(--dwains-theme-grey)

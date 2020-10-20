@@ -4,10 +4,16 @@ system_bar_card:
   card:
     type: custom:bar-card
     entity: '[[entity]]'
+    position:
+      indicator: inside
+      name: outside
+      width:
     style: |
-      ha-card {
-        color: var(--dwains-theme-names);
-        padding: 6px 16px 0px 16px;
+      bar-card-currentbar {
         border-radius: 5px;
-        background-color: var(--dwains-theme-primary);
-      }    
+        background-color: dwains-theme-background;
+      } 
+      bar-card-backgroundbar {
+        border-radius: 5px;
+        background-color: dwains-theme-background;
+      }       

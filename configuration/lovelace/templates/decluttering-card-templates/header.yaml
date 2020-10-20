@@ -8,13 +8,15 @@ header:
         padding: 10px 0px;
         color: #fff;
         background-color: var(--dwains-theme-header-background);
-        margin-top: -4px;
-        border-radius: 0; 
+        margin-top: -20px;
+        border-radius: 16px; 
         font-weight: bold;
         font-size: 14px;
+        paper-item-icon_-_color: var(--dwains-theme-header-text)
+
       }
       ha-markdown {
-        padding-top: 0px !important;
+        padding-top: 16px !important;
         padding-bottom: 14px !important;
       }
       ha-card a {
@@ -42,7 +44,8 @@ header:
         margin: 0;
         {% endif %}
       }
+
     content: |
-      [<ha-icon icon=fas:chevron-left></ha-icon>](/lovelace/[[path]])
+      [<ha-icon icon=fas:chevron-left style="color: white;"></ha-icon>](/lovelace/[[path]])
       <h3>[[subtitle]]</h3>
       <h1>[[title]]</h1>

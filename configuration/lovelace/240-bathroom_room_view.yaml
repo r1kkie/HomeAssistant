@@ -28,7 +28,7 @@ cards:
           icon: fas:lightbulb
           tap_action:
             action: navigate
-            navigation_path: /lovelace/bedroom_lights
+            navigation_path: /lovelace/bathroom_lights
           label: >
               [[[
                 if (states['group.bathroom_lights'].state == '0')

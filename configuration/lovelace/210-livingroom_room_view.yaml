@@ -95,10 +95,23 @@ cards:
                 return  'Uppdragen' 
               ]]]
 
+#        - type: custom:button-card
+#          template: device_button_2
+#          entity: sensor.dish_washer_energy_monthly
+#          name: Förbrukning
+#          tap_action:
+#            action: more-info
+#          icon: mdi:flash
+#          show_state: true
+#          label: >
+#              [[[
+#                return states['sensor.shelly_shplg_s_267f92_current_consumption'].state +' W'
+#              ]]]
+
         - type: custom:mini-graph-card
           entities: 
             - entity: sensor.temperature_sensor_livingroom
-          name: vardagsrum
+          name: Vardagsrum
           style: |
             ha-card {
               padding: 6px 16px 0px 16px;
@@ -109,9 +122,9 @@ cards:
           hours_to_show: 72
           points_per_hour: 0.25
           color_thresholds:
-            - value: 20
+            - value: 21
               color: "#0040FF"
-            - value: 23
+            - value: 24
               color: "#00ab0e"
-            - value: 26
+            - value: 27
               color: "#FF0000"

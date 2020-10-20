@@ -3,12 +3,6 @@ header_person:
   show_entity_picture: true
   show_state: true
   show_label: true
-#  label: >
-#    [[[ 
-#      if(!entity){
-#        console.log('Dwains Theme Error: Invalid person entity persons.yaml!');
-#      }
-#    ]]]
   tap_action: 
     action: more-info
   state:

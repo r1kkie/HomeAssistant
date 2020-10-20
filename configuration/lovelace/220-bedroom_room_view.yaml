@@ -35,7 +35,7 @@ cards:
                   return "Alla lampor släkta"
                 return 'Lampor tända: ' + states['sensor.bedroom_lights_turned_on'].state  
               ]]]
-       
+
         - type: custom:button-card
           template: switch_button
           entity: switch.phone_charger_rickard
@@ -71,6 +71,23 @@ cards:
                 return "Påslagen"
               return "Avstängd"
             ]]]
+
+#        - type: custom:button-card
+#          template: device_button_2
+#          entity: sensor.ac_energy_monthly
+#          name: AC
+#          tap_action:
+#            action: call-service
+#            service: broadlink.send
+#            service_data:
+#              host: 192.168.1.76
+#              packet: 'JgBYAAABMZMVEhMTFTYVEhQSFREVEhURFTYVNhYQFDcVNhY1FTYUNxMTFRITNxYRExMUEhQUEhMUNxQ3FREVNhU2FTYVNhU2FQAFBAABLEoUAAxfAAExSRUADQU='
+#          icon: fas:fan
+#          show_state: true
+#          label: >
+#              [[[
+#                return states['sensor.shelly_shplg_s_266f08_current_consumption'].state +' W'
+#              ]]]
 
         - type: custom:button-card
           template: switch_button
@@ -108,6 +125,11 @@ cards:
               return "Deaktiverat"
             ]]]
 
+        - type: 'custom:shutter-card'
+          entities:
+            - entity: cover.bedroom
+              name: Rullgardin
+
         - type: custom:mini-graph-card
           entities: 
             - entity: sensor.temperature_sensor_bedroom
@@ -128,3 +150,4 @@ cards:
               color: "#00ab0e"
             - value: 26
               color: "#FF0000" 
+

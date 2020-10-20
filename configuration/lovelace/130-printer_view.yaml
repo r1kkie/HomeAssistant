@@ -40,6 +40,14 @@ cards:
               ]]]
         - type: custom:button-card
           template: device_button_2
+          entity: switch.printer_light
+          icon: fas:lightbulb
+          name: Lampan
+          show_state: true
+          tap_action:
+            action: toggle
+        - type: custom:button-card
+          template: device_button_2
           name: Temperatur
           show_state: false
           icon: mdi:thermometer
@@ -87,7 +95,7 @@ cards:
           name: Tid kvar
           tap_action:
             action: more-info
-          icon: mdi:timer
+          icon: mdi:timer-outline
           show_state: true
 
   - type: custom:mod-card

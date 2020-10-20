@@ -34,3 +34,24 @@ slider_button:
       - text-align: right
       - margin-right: 20px
       - text-transform: capitalize
+    custom_fields:
+      closed:
+        - background-color: transparent;
+        - position: absolute
+        - left: 35%
+        - top: 65%
+        - width: 60px
+        - height: 40px
+        - text-align: center
+        - color: var(--dwains-theme-grey)
+        - font-size: 12px
+      open:
+        - background-color: transparent;
+        - position: absolute
+        - left: 80%
+        - top: 65%
+        - width: 60px
+        - height: 40px
+        - text-align: center
+        - color: var(--dwains-theme-grey)
+        - font-size: 12px                  

@@ -33,6 +33,22 @@ cards:
             action: more-info
 
         - type: custom:button-card
+          entity: binary_sensor.washing_machine_running
+          template: more_page_house_information_favorites
+          icon: mdi:washing-machine
+          name: Tvättmaskin
+          tap_action:
+            action: more-info
+
+        - type: custom:button-card
+          entity: binary_sensor.dryer_running
+          template: more_page_house_information_favorites
+          icon: mdi:tumble-dryer
+          name: Torktumlare
+          tap_action:
+            action: more-info
+
+        - type: custom:button-card
           entity: binary_sensor.ender_3_printing
           template: more_page_house_information_favorites
           icon: mdi:printer-3d
@@ -66,15 +82,15 @@ cards:
             navigation_path: flower_view
           label: >
               [[[
-                if (states['sensor.sedum_moisture'].state < '30')
+                if (states['sensor.pillerfikus_moisture'].state < '20')
                   return "Behöver vatten"
-                  if (states['sensor.guldpalm_moisture'].state < '30')
+                  if (states['sensor.guldpalm_moisture'].state < '20')
                     return "Behöver vatten"
-                    if (states['sensor.bergpalm_moisture'].state < '30')
+                    if (states['sensor.bergpalm_moisture'].state < '20')
                       return "Behöver vatten"
-                      if (states['sensor.citronfikus_moisture'].state < '30')
+                      if (states['sensor.citronfikus_moisture'].state < '20')
                         return "Behöver vatten"
-                        if (states['sensor.pillerfikus_moisture'].state < '30')
+                        if (states['sensor.sedum_moisture'].state < '20')
                           return "Behöver vatten"
                     
                 return 'Fuktiga' 
@@ -83,11 +99,11 @@ cards:
             icon: 
               - color: >
                   [[[
-                    if (states['sensor.sedum_moisture'].state < '30') return 'red';
-                    if (states['sensor.guldpalm_moisture'].state < '30') return 'red';
-                    if (states['sensor.bergpalm_moisture'].state < '30') return 'red';
-                    if (states['sensor.citronfikus_moisture'].state < '30') return 'red';
-                    if (states['sensor.pillerfikus_moisture'].state < '30') return 'red';
+                    if (states['sensor.sedum_moisture'].state < '20') return 'red';
+                    if (states['sensor.guldpalm_moisture'].state < '20') return 'red';
+                    if (states['sensor.bergpalm_moisture'].state < '20') return 'red';
+                    if (states['sensor.citronfikus_moisture'].state < '20') return 'red';
+                    if (states['sensor.pillerfikus_moisture'].state < '20') return 'red';
                     else return 'var(--dwains-theme-accent)';
                   ]]]
 
@@ -97,7 +113,7 @@ cards:
           name: Enheter
           tap_action:
             action: navigate
-            navigation_path: system_monitor_page 
+            navigation_path: all_devices 
           label: >
               [[[
                 if (states['sensor.lights_status'].state == 'Problems')
@@ -118,23 +134,23 @@ cards:
                     else return 'var(--dwains-theme-accent)';
                   ]]]
 
-  - type: custom:mod-card
-    style: |
-      ha-card {
-        padding: 0px 16px 0px 16px;
-      }
-    card:
-      type: custom:atomic-calendar
-      style: |
-        ha-card {
-          border-radius: 4px;
-          box-shadow: none;
-          background-color: var(--dwains-theme-primary);
-        }
-      showProgressBar: false
-      eventBarColor: 'var(--dwains-theme-grey)'
-      dayWrapperLineColor: 'var(--dwains-theme-grey)'
-      timeColor: 'var(--dwains-theme-grey)'
-      entities: 
-        - calendar.rickard_sers_gmail_com
-      title: "Kalender"
+#  - type: custom:mod-card
+#    style: |
+#      ha-card {
+#        padding: 0px 16px 0px 16px;
+#      }
+#    card:
+#      type: calendar
+#      style: |
+#        ha-card {
+#          border-radius: 4px;
+#          box-shadow: none;
+#          background-color: var(--dwains-theme-primary);
+#        }
+#      showProgressBar: false
+#      eventBarColor: 'var(--dwains-theme-grey)'
+#      dayWrapperLineColor: 'var(--dwains-theme-grey)'
+#      timeColor: 'var(--dwains-theme-grey)'
+#      entities: 
+#        - calendar.rickard_sers_gmail_com
+#      title: "Kalender"

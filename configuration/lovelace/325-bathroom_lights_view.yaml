@@ -1,5 +1,5 @@
 title: Sovrums lampor
-path: bedroom_lights
+path: bathroom_lights
 cards:
   - type: vertical-stack
     cards:
@@ -24,26 +24,13 @@ cards:
           cards:
             - type: custom:button-card
               template: room_light
-              entity: light.bedroom_ceiling
-              name: Taket 
+              entity: light.bathroom_ceiling_3
+              name: Taket RGB
           
             - type: custom:button-card
               template: room_light
-              entity: light.bedroom_window
-              name: Fönster
-
-            - type: custom:button-card
-              template: room_light
-              entity: light.bed_table_light_right
-              name: Sängbord höger
-
-            - type: custom:button-card
-              template: room_light
-              entity: light.bed_table_lamp_left
-              name: Sängbord vänster
-
-
-
+              entity: light.bathroom_ceiling_2
+              name: Tacket 2
 
 
             
