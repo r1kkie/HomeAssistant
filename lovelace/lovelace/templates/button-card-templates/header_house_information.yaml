@@ -1,0 +1,60 @@
+header_house_information:
+  layout: icon_name_state2nd
+  show_state: false
+  show_label: true
+  icon: fas:home
+  entity: sensor.sensor_problems
+  state:
+    - value: 'Yes'
+#      icon: 'fas:exclamation-triangle'
+      styles:
+        icon:
+          - color: red
+  tap_action: 
+    action: navigate
+    navigation_path: more_page_house_information
+  name: >
+      [[[
+            if (states['sensor.total_lights_turned_on'].state == '0')
+              return "Alla lampor släckta"
+          if (states['sensor.total_lights_turned_on'].state == '1')
+          return states['sensor.total_lights_turned_on'].state + ' Lampa tänd'
+        if (states['sensor.total_lights_turned_on'].state > '1')
+        return states['sensor.total_lights_turned_on'].state + ' Lampor tända'
+      ]]] 
+  label: >
+      [[[
+            if (states['sensor.total_door_windows_open'].state == '0')
+              return "Alla dörrar/fönster stängda"
+          if (states['sensor.total_door_windows_open'].state == '1')
+          return states['sensor.total_door_windows_open'].state + ' dörr/fönster öppet'
+        if (states['sensor.total_door_windows_open'].state > '1')
+        return states['sensor.total_door_windows_open'].state + ' dörrar/fönster öppna'
+      ]]]
+  styles:
+    grid:
+      - grid-template-areas: '"i n""i l"'
+      - grid-template-columns: 35% 1fr
+      - grid-template-rows: 1fr min-content
+    card:
+      - box-shadow: none
+      - padding: 0%
+      - height: 55px
+    icon: 
+      - color: white
+      - width: 55%
+    img_cell:
+      - width: 45px
+      - height: 45px
+      - background: var(--dwains-theme-accent)
+      - color: white
+      - border-radius: 100%
+    label:
+      - color: white
+      - justify-self: start
+      - font-size: 10px
+      - text-align: left
+    name:
+      - color: white
+      - justify-self: start
+      - font-size: 12px

@@ -1,0 +1,44 @@
+header_greeting:
+  show_label: false
+  show_icon: false
+  name: >
+    [[[
+      var today = new Date()
+      var curHr = today.getHours()
+
+      if (curHr < 12) {
+        return "Godmorgon";
+      } else if (curHr < 18) {
+        return "Godeftermiddag";
+      } else {
+        return "Godkväll";
+      }
+    ]]]
+  styles:
+    grid:
+      - grid-template-areas: '"n i""l i"'
+      - grid-template-columns: 80% 20%
+      - grid-template-rows: min-content min-content
+    card:
+      - box-shadow: none
+      - padding: 0%
+    icon:
+      - width: 45%
+      - color: '#3f4653'
+    img_cell:
+      - width: 60px
+      - height: 60px
+      - background-color: var(--dwains-theme-alarm-background)
+      - border-radius: 100%
+      - justify-self: end
+    label:
+      - color: white
+      - justify-self: start
+      - font-size: 14px
+      - align-self: flex-start
+    name:
+      - color: white
+      - justify-self: start
+      - font-size: 22px
+      - font-weight: bold
+      - align-self: end

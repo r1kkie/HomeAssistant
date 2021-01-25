@@ -1,0 +1,29 @@
+title: Home      
+        
+views:
+  - !include /config/lovelace/100-mobile_view.yaml
+  - !include /config/lovelace/110-all_lights_view.yaml
+  - !include /config/lovelace/130-printer_view.yaml
+  - !include /config/lovelace/140-vacuum_view.yaml
+  - !include /config/lovelace/150-settings_view.yaml
+  - !include /config/lovelace/120-system_info_view.yaml
+  - !include /config/lovelace/210-livingroom_room_view.yaml
+  - !include /config/lovelace/220-bedroom_room_view.yaml
+  - !include /config/lovelace/230-hallway_room_view.yaml
+  - !include /config/lovelace/240-bathroom_room_view.yaml
+  - !include /config/lovelace/250-home_information_view.yaml
+  - !include /config/lovelace/310-livingroom_lights_view.yaml
+  - !include /config/lovelace/320-bedroom_lights_view.yaml
+  - !include /config/lovelace/325-bathroom_lights_view.yaml
+  - !include /config/lovelace/330-home_theater_view.yaml
+  - !include /config/lovelace/340-flower_view.yaml
+  - !include /config/lovelace/350-entities_view.yaml  
+  - !include /config/lovelace/400-desktop_view.yaml
+
+
+decluttering_templates:
+  !include_dir_merge_named lovelace/templates/decluttering-card-templates 
+
+
+button_card_templates: 
+  !include_dir_merge_named lovelace/templates/button-card-templates 

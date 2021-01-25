@@ -1,0 +1,154 @@
+title: Bedroom Room
+visible: false
+path: bedroom_room
+cards:
+  - type: custom:decluttering-card
+    template: header
+    variables:
+      - title: Sovrum
+      - subtitle: Rum
+      - path: mobile
+
+  - type: custom:mod-card
+    style: |
+      ha-card {
+        padding: 8px 16px 20px 16px;
+      }
+    card:
+      type: custom:layout-card
+      min_columns: 1
+      max_columns: 1
+      layout: horizontal
+      justify_content: start
+      
+      cards:
+        - type: custom:button-card
+          template: device_button
+          entity: group.bedroom_lights
+          name: Lampor
+          icon: fas:lightbulb
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/bedroom_lights
+          label: >
+              [[[
+                if (states['group.bedroom_lights'].state == '0')
+                  return "Alla lampor släkta"
+                return 'Lampor tända: ' + states['sensor.bedroom_lights_turned_on'].state  
+              ]]]
+
+        - type: custom:button-card
+          template: switch_button
+          entity: switch.phone_charger_rickard
+          action:
+            tap_action: toggle
+          duoble_tap_action:
+            action: more-info
+          hold_action:
+            action: more-info
+          name: Rickard
+          icon: fas:mobile-alt
+          label: >
+            [[[
+              if (states['switch.phone_charger_rickard'].state == 'on')
+                return "Påslagen"
+              return "Avstängd"
+            ]]]
+
+        - type: custom:button-card
+          template: switch_button
+          entity: switch.phone_charger_jennifer
+          action:
+            tap_action: toggle
+          duoble_tap_action:
+            action: more-info
+          hold_action:
+            action: more-info
+          name: Jennifer
+          icon: fas:mobile-alt
+          label: >
+            [[[
+              if (states['switch.phone_charger_jennifer'].state == 'on')
+                return "Påslagen"
+              return "Avstängd"
+            ]]]
+
+#        - type: custom:button-card
+#          template: device_button_2
+#          entity: sensor.ac_energy_monthly
+#          name: AC
+#          tap_action:
+#            action: call-service
+#            service: broadlink.send
+#            service_data:
+#              host: 192.168.1.76
+#              packet: 'JgBYAAABMZMVEhMTFTYVEhQSFREVEhURFTYVNhYQFDcVNhY1FTYUNxMTFRITNxYRExMUEhQUEhMUNxQ3FREVNhU2FTYVNhU2FQAFBAABLEoUAAxfAAExSRUADQU='
+#          icon: fas:fan
+#          show_state: true
+#          label: >
+#              [[[
+#                return states['sensor.shelly_shplg_s_266f08_current_consumption'].state +' W'
+#              ]]]
+
+        - type: custom:button-card
+          template: switch_button
+          entity: input_boolean.sleep_mode
+          tap_action:
+            action: more-info
+          duoble_tap_action:
+            action: toggle
+          hold_action: 
+            action: toggle
+          name: Sovläge
+          icon: far:moon
+          label: >
+            [[[
+              if (states['input_boolean.sleep_mode'].state == 'on')
+                return "Aktiverat"
+              return "Deaktiverat"
+            ]]]
+
+        - type: custom:button-card
+          template: switch_button
+          entity: input_boolean.cozy_mode
+          tap_action:
+            action: more-info
+          duoble_tap_action:
+            action: toggle
+          hold_action:
+            action: toggle
+          name: Mysläge
+          icon: far:heart
+          label: >
+            [[[
+              if (states['input_boolean.cozy_mode'].state == 'on')
+                return "Aktiverat"
+              return "Deaktiverat"
+            ]]]
+
+        - type: 'custom:shutter-card'
+          entities:
+            - entity: cover.bedroom
+              name: Rullgardin
+
+        - type: custom:mini-graph-card
+          entities: 
+            - entity: sensor.temperature_sensor_bedroom
+          name: Sovrum
+          style: |
+            ha-card {
+              padding: 6px 16px 0px 16px;
+              border-radius: 5px;
+              color: var(--dwains-theme-names);
+              background-color: var(--dwains-theme-primary);
+            }
+          hours_to_show: 72
+          points_per_hour: 0.25
+          color_thresholds:
+            - value: 20
+              color: "#0040FF"
+            - value: 23
+              color: "#00ab0e"
+            - value: 26
+              color: "#FF0000" 
+

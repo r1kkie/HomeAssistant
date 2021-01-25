@@ -1,0 +1,51 @@
+# Header partial
+header:
+  card:
+    type: markdown
+    style: |
+      ha-card {
+        box-shadow: none;
+        padding: 10px 0px;
+        color: #fff;
+        background-color: var(--dwains-theme-header-background);
+        margin-top: -20px;
+        border-radius: 16px; 
+        font-weight: bold;
+        font-size: 14px;
+        paper-item-icon_-_color: var(--dwains-theme-header-text)
+
+      }
+      ha-markdown {
+        padding-top: 16px !important;
+        padding-bottom: 14px !important;
+      }
+      ha-card a {
+        color: var(--dwains-theme-header-text) !important;
+      }
+      ha-card p {
+        margin-bottom: 0px;
+      }
+      ha-card h1 {
+        color: var(--dwains-theme-header-text);
+        font-size: 1.5em;
+        {% if subtitle %}
+        margin: 0;
+        {% else %}
+        margin: 10px 0 0 0;
+        {% endif %}
+      }
+      ha-card h3 {
+        font-size: 13px;
+        font-weight: normal;
+        color: var(--dwains-theme-header-text);
+        {% if subtitle %}
+        margin: 14px 0 0 0;
+        {% else %}
+        margin: 0;
+        {% endif %}
+      }
+
+    content: |
+      [<font color="White"><ha-icon icon=fas:chevron-left></ha-icon>](/lovelace/[[path]])
+      <h3>[[subtitle]]</h3>
+      <h1>[[title]]</h1>

@@ -1,0 +1,50 @@
+title: Bathroom Room
+visible: false
+path: bathroom_room
+cards:
+  - type: custom:decluttering-card
+    template: header
+    variables:
+      - title: Toaletten
+      - subtitle: Rum
+      - path: mobile
+
+  - type: custom:mod-card
+    style: |
+      ha-card {
+        padding: 8px 16px 20px 16px;
+      }
+    card:
+      type: custom:layout-card
+      min_columns: 1
+      max_columns: 1
+      layout: horizontal
+      justify_content: start
+      
+      cards:
+        - type: custom:button-card
+          template: device_button
+          entity: group.bathroom_lights
+          name: Lampor
+          icon: fas:lightbulb
+          tap_action:
+            action: navigate
+            navigation_path: /lovelace/bathroom_lights
+          label: >
+              [[[
+                if (states['group.bathroom_lights'].state == '0')
+                  return "Alla lampor släkta"
+                return 'Lampor tända: ' + states['sensor.bathroom_lights_turned_on'].state  
+              ]]] 
+
+        - type: custom:button-card
+          template: switch_button
+          entity: input_boolean.shower_state
+          name: Duschläge
+          icon: fas:shower 
+          label: >
+              [[[
+                if (states['input_boolean.shower_state'].state == 'on')
+                  return "Aktiverat"
+                return 'Avslaget'  
+              ]]] 
